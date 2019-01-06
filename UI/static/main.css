@@ -378,9 +378,14 @@ form input:focus{
     width:75%;
     
 }
-#header-main-topic .question-field #span a{
+#header-main-topic .question-field #span {
+    /* font-size:0.85em;
+    font-size:0.85em; */
+    /* float:right; */
+    /* margin-right:40%; */
     font-size:0.85em;
-    
+    float:right;
+    margin-right:40%;
 }
 #header-main-topic .question-field p{
     
