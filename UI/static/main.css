@@ -395,7 +395,7 @@ form input:focus{
 }
 #header-main-topic .question-field #comments-section{
     
-    border:2px black solid;
+    /* border:2px black solid; */
     margin-top:20px;
     padding:12px;
 }
