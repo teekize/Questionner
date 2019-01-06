@@ -6,11 +6,10 @@ body{
 a{
     text-decoration: none;
 }
-/******HEADER******/
+
 /***HEADER*****/
 header{
     overflow:hidden;
-    /* min-height:150px; */
     border-bottom:2px white solid;
     margin:0;
     padding:0;
@@ -18,22 +17,18 @@ header{
     color:white;
 }
 .header h1{
-    
     border-right:2px solid white;
     padding:7px 7px 16px 75px;
     font-family: 'Roboto Condensed', sans-serif;
     font-size:700;
     font-style:bold;
     line-height: 15px;
-    /* margin:10px; */
     float:left;
     margin-top:10px;
     
 }
 
 .header{
-    /* border-bottom:3px solid green; */
-    /* margin-bottom:5px; */
      margin-top:0px;
     padding:5px;
     padding-top:12px;
@@ -54,21 +49,14 @@ nav{
     margin-bottom:5px;
 }
 nav ul{
-    
         list-style-type: none;
         margin: 0;
         margin-left:0px;
         margin-bottom: 5px;
         padding-bottom: 0px;
         overflow: hidden;
-        
-        
-    
-    
 }
 nav ul li{
-    
-    
     margin:0px auto;
     float:left;
     padding:10px 10px;
@@ -82,19 +70,15 @@ nav ul li a{
 }
 
 
-/*****FORM*******/
+/*****FORM*****/
 /****REGISTRATION ****/
 .wrapper{
     margin: 0 auto;
     width:50%;
 }
-
-
-
 form p{
     text-align: center;
     margin-top: 5px;
-    /* font-family:'Boogaloo', cursive; */
     font-size:1.1em;
 }
 
@@ -109,14 +93,10 @@ form input{
     height:28px;
     width:90%;
     color:black;
-    /* margin:4px; */
     border:none;
     padding: 0;
-    /* border-bottom:2px solid white; */
     outline-color: grey;
     font-family: 'Roboto', sans-serif;
-    
-    
 }
 form input:focus{
     background-color: aliceblue;
@@ -125,15 +105,10 @@ form input:focus{
 
 @media only screen and (min-width:1000px){
     form{
-        
         border:2px solid white;
         border-radius: 10px;
-        /* hieght:150px; */
         margin-top:15px;
-        /* background-color:ghostwhite; */
         width:40%;
-        
-        
     }
 }
 
@@ -158,16 +133,13 @@ form input:focus{
     
 }
 .wrapper form input[type=password]{
-    /* height:24px;
-    width:96%;
-    margin:4px; */
+    
     height:30px;
     width: 95%;
     padding: 10px;
     margin-left:3px;
     border:none;
-    /* border-bottom:2px solid white; */
-    /* background-color: black; */
+    
     font-size:1em;
 }
 .wrapper form button{
@@ -176,20 +148,348 @@ form input:focus{
     width:95%;
     height:30px;
     padding-bottom:24px;
-    /* width: 95%; */
+    
     text-decoration: none;
     background-color:#4caf50;
     margin-top:4px;
     font-size:1.3em;
-    /* color:white;
-    padding: 24px;
-    font-size:1.3em;
-    border: none;
-    border-radius:0px;
-    outline-color: grey;
-    margin:0px; */
+  
 }
 
+
+
+
+
+
+
+.header-{
+    border-bottom:2px blue solid;
+    overflow: hidden;
+}
+.header- h1{
+    float:left;
+    padding-top:25px;
+    margin:0;
+
+}
+.header- form{
+    float:right;
+    padding-top:12px;
+    margin:0;
+    border:none;
+    /* background-color: navajowhite; */
+}
+/* .header- form input{
+    height:24px;
+    width:100%;
+} */
+.header- form button{
+    /* float:right;
+    padding-top:25px; */
+    width:50%;
+    margin:0;
+    padding:12px;
+    float:right;
+    color:black;
+}
+
+#form-section form{
+    margin-left:22%;
+    border:none;
+    
+}
+#form-section input{
+    width:100%;
+    height:24px;
+    padding:12px;
+    text-transform: capitalize;
+    color:black;
+    background-color: aliceblue;
+    margin-top:4px;
+    border:1px black solid;
+    
+}
+
+#meetup{
+    overflow: hidden;
+}
+
+#meetup p{
+    text-align: center;
+}
+
+#meetup h4{
+    text-align: center;
+    font-size:1.em;
+    text-transform: uppercase;
+}
+
+.mama{
+    min-height:calc(100px- 44px);
+    border:2px whitesmoke solid;
+    float:left;
+    margin-top:25px;
+    margin-left:2%;
+    margin-right:2%;
+    padding:40px;
+    width:22%;
+    background-color: cadetblue;
+    
+
+}
+.mama form{
+    margin-left: 26%;
+    padding:0;
+    border:none;
+    background-color:gainsboro;
+    
+    
+}
+
+.mama form button{
+    margin: 0;
+    margin-left:0%;
+    padding:5px;
+    width:100%;
+    background-color: white;
+}
+
+.mama a{
+    text-decoration: none;
+    
+    color:yellow;
+}
+.mama a hover{
+    background-color:black;
+    rotate: 2px 2px 0;
+}
+
+/* .main-tag{
+    /* border:4px red solid; */
+
+
+.profile{
+    padding:2px;
+    border:2px white solid;
+    background-color:wheat;
+}
+.img{
+    margin-left:42%;
+    
+}
+.img img{
+    
+    padding:0px;
+    margin:0 45px;
+    margin-top:56px;
+    border-radius: 50%;
+    height:100px;
+    width: 100px;
+    border:3px white solid;
+    transition: all .5s;
+}
+.img img:hover{
+    transform:scale(1.2) rotate(10deg);
+}
+.profile h4{
+    font-weight: bold;
+    font-style: normal;
+    margin:0 auto;
+    text-align:center;
+    text-transform: uppercase;
+    padding:25px;
+    color:white;
+    font-size:1.7em;
+}
+#main-question-commented{
+    overflow: hidden;
+    margin: 15px;
+}
+#main-question-commented .profile{
+    float:left;
+    margin-left:1.5%;
+    margin-right:1.5%;
+    padding:25px;
+    width:42%;
+    margin-top:5px;
+    
+}
+
+#main-question-commented h1{
+    padding:1px;
+    margin:0 auto;
+    text-align: center;
+}
+#main-question-commented p{
+    margin:4px auto;
+    padding:30px;
+    text-align: center;
+    font-size:1.6em;
+}
+
+#top-feed p{
+    margin-left:14px;
+    padding-left:25px;
+    
+}
+#top-feed h2{
+    border-bottom:2px orange solid;
+}
+
+
+/****** MEET_UP.HTML******/
+#Header-meet-up{
+    overflow: hidden;
+}
+#Header-meet-up .topic{
+    border:2px solid orange;
+    margin-bottom:22px;
+    background-color:whitesmoke;
+}
+#Header-meet-up h2{
+    padding:1px;
+    margin:13 auto;
+    text-align: center;
+}
+#Header-meet-up p{
+    /* float:left; */
+    text-align: center;
+    margin:0;
+    padding:12px;
+}
+#header-main-topic{
+    overflow: hidden;
+    margin:0;
+    /* background-color: white; */
+}
+#header-main-topic p{
+    text-align: justify;
+    margin:0;
+    padding:0;
+    padding-left:7px;
+}
+/* #header-main-topic form{
+    margin:0;
+    margin-top:12px;
+    padding: 0;
+} */
+#header-main-topic .wrapper{
+    background-color: whitesmoke;
+    float:right;
+}
+.question-field{
+    border:1px black solid;
+    margin: 0px;
+    padding:0;
+}
+#header-main-topic .question-field{
+    
+    margin-top:4px;
+    width:75%;
+    /* height:400px; */
+}
+#header-main-topic .question-field p{
+    
+    line-height: 15px;
+    
+    font-size:1.5em;
+}
+#header-main-topic .question-field #comments-section{
+    
+    border:2px black solid;
+    margin-top:20px;
+    padding:12px;
+}
+#header-main-topic .question-field .question{
+    
+    line-height: 15px;
+    margin-top:4px;
+    margin-bottom:4px;
+    padding-top:12px;
+    font-size:1.1em;
+}
+
+#header-main-topic .question-field h5{
+    
+    margin-left:5%;
+    padding:4px;
+    font-size:1.1em;
+    margin-top:0;
+    border-bottom:1px wheat solid; 
+}
+#header-main-topic .question-field form{
+    margin:0px;
+    /* margin-top:35px; */
+    border:none;
+    margin-bottom:0;
+    padding-bottom:0;
+    padding:0;
+    width:45%;
+    margin-left:30%;
+}
+#header-main-topic .question-field input{
+    width:60%;
+    
+    margin-top:65px;
+    /* margin-bottom:15px;
+} */}
+#header-main-topic .question-field button{
+
+    padding:5px;
+    /* margin-left:29%; */
+    padding-bottom:20px;
+    background-color: aliceblue;
+    /* margin-left:auto;
+    margin-right:auto; */
+    height:25px;
+    width:25%;
+}
+#header-main-topic h4{
+    border-bottom:2px orange solid;
+    font-size:1.5em;
+    margin:0;
+
+}
+#header-main-topic .main-topic h3{
+    text-transform: uppercase;
+    padding:15px;
+    
+}
+
+#span{
+    margin-right:15px;
+    color: rgb(65, 63, 62);
+}
+#header-main-topic aside{
+    float:left;
+    margin: 8px;
+    padding: 25px;
+    border-right:2px black solid;
+    /* line-height: 100%;
+     */
+}
+#header-main-topic aside form {
+    height: 30px;
+    width:100%;
+    border:none;
+}
+#header-main-topic aside form input[type=text]{
+    height: 30px;
+    width:100%;
+}
+#header-main-topic aside form button{
+    height: 30px;
+    width:100%;
+    /* background-color:blue */
+    margin:0px;
+    margin-top:4px;
+}
+
+.main-tag .profile{
+    background-image: url("https://placeimg.com/1000/222/nature") ;
+    background-repeat:no-repeat;
+    background-size: 1332px 255px;
+}
 
 
 /****FOOTER****/
