@@ -1,0 +1,194 @@
+/*****THE CSS FOR THE NEW WEBPAGES****/
+body{
+    background-color:whitesmoke;
+    font-family: 'Roboto', sans-serif;
+}
+a{
+    text-decoration: none;
+}
+/******HEADER******/
+/***HEADER*****/
+header{
+    overflow:hidden;
+    /* min-height:150px; */
+    border-bottom:2px white solid;
+    margin:0;
+    padding:0;
+    background-color:black;
+    color:white;
+}
+.header h1{
+    
+    border-right:2px solid white;
+    padding:7px 7px 16px 75px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size:700;
+    font-style:bold;
+    line-height: 15px;
+    /* margin:10px; */
+    float:left;
+    margin-top:10px;
+    
+}
+
+.header{
+    /* border-bottom:3px solid green; */
+    /* margin-bottom:5px; */
+     margin-top:0px;
+    padding:5px;
+    padding-top:12px;
+    padding-left:4px;
+    padding-right:50px;
+    background-image: url("image.JPG");
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:left top;
+    min-height:25px;
+    width:22px;
+
+} 
+nav{
+    float:right;
+    margin-top:0;
+    margin-right:50px;
+    margin-bottom:5px;
+}
+nav ul{
+    
+        list-style-type: none;
+        margin: 0;
+        margin-left:0px;
+        margin-bottom: 5px;
+        padding-bottom: 0px;
+        overflow: hidden;
+        
+        
+    
+    
+}
+nav ul li{
+    
+    
+    margin:0px auto;
+    float:left;
+    padding:10px 10px;
+}
+nav ul li a{
+    min-height:100px;
+    padding:5px;
+    width:100%;
+    color:white;
+    font-size:1.1em;
+}
+
+
+/*****FORM*******/
+/****REGISTRATION ****/
+.wrapper{
+    margin: 0 auto;
+    width:50%;
+}
+
+
+
+form p{
+    text-align: center;
+    margin-top: 5px;
+    /* font-family:'Boogaloo', cursive; */
+    font-size:1.1em;
+}
+
+form h3{
+    text-align: center;
+    margin-top: 5px;
+    padding:0px;
+    font-size:1.5em;
+    text-transform: uppercase;
+}
+form input{
+    height:28px;
+    width:90%;
+    color:black;
+    /* margin:4px; */
+    border:none;
+    padding: 0;
+    /* border-bottom:2px solid white; */
+    outline-color: grey;
+    font-family: 'Roboto', sans-serif;
+    
+    
+}
+form input:focus{
+    background-color: aliceblue;
+    
+}
+
+@media only screen and (min-width:1000px){
+    form{
+        
+        border:2px solid white;
+        border-radius: 10px;
+        /* hieght:150px; */
+        margin-top:15px;
+        /* background-color:ghostwhite; */
+        width:40%;
+        
+        
+    }
+}
+
+/***THIS THE STYLING FOR THE REGISTRATION AND LOGIN FORMS**/
+.wrapper{
+    margin:0 auto;
+    width:75%;
+}
+.wrapper form{
+    margin-left:19%;
+    width:50%;
+    min-height:150px;
+}
+.wrapper form input[type=text]{
+    height:30px;
+    width: 95%;
+    padding: 10px;
+    margin-left:3px;
+    color:black;
+    font-size:1em;
+
+    
+}
+.wrapper form input[type=password]{
+    /* height:24px;
+    width:96%;
+    margin:4px; */
+    height:30px;
+    width: 95%;
+    padding: 10px;
+    margin-left:3px;
+    border:none;
+    /* border-bottom:2px solid white; */
+    /* background-color: black; */
+    font-size:1em;
+}
+.wrapper form button{
+    margin-left:3px;
+    color:black;
+    width:95%;
+    height:30px;
+    padding-bottom:24px;
+    /* width: 95%; */
+    text-decoration: none;
+    background-color:#4caf50;
+    margin-top:4px;
+    font-size:1.3em;
+    /* color:white;
+    padding: 24px;
+    font-size:1.3em;
+    border: none;
+    border-radius:0px;
+    outline-color: grey;
+    margin:0px; */
+}
+
+
+
