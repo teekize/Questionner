@@ -388,7 +388,7 @@ form input:focus{
     margin-right:40%;
 }
 #header-main-topic .question-field p{
-    
+    float:left;
     line-height: 15px;
     
     font-size:1.5em;
