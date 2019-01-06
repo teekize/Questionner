@@ -192,3 +192,15 @@ form input:focus{
 
 
 
+/****FOOTER****/
+footer{
+    margin:0 ;
+    background-color: gray;
+    
+
+}
+footer p{
+    font-family:"Roboto Condensed" sans-serif;
+    text-align:center;
+    margin: 0 auto;
+}
