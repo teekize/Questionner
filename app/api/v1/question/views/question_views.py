@@ -15,9 +15,14 @@ def post_question():
     title = request.json["title"]
     meetup = request.json["meetup"]
 
-    if question_model.Question_Validators(body, asked_by, title) == True:
+    if question_model.Question_Validators.validate_post(body, asked_by, title) != True:
+        return jsonify({"status": 400,
+                        "error" : "invalid data"
+                        })
+    else:
+
         new_question={
-            "id" : question_model.questions[-1]+1,
+            "id" : question_model.questions[-1]["id"]+1,
             "createdOn" : datetime.datetime.utcnow(),
             "createdBy" : asked_by,
             "body" : body,
