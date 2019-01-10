@@ -38,7 +38,7 @@ class Question_Validators:
            return False
     #    return True
 
-       if type(createdBy) != int:
+       if type(createdBy) != str:
            return False
     #    return True
         
