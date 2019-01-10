@@ -1,18 +1,17 @@
 language: python
 
-dist: xenial
+python:
+  - "3.7"
 
-version:
-  -"python 3.7"
-
-script: pytest
-
-virtualenv:
-  system_site_packages: true
 
 install:
 - pip install -r requirements.txt
 
-# once our tests have run, we need to make sure we are back in 
-# the root directory of our project for deployment.
-after_script: cd ~
+
+script: 
+  - pytest --cov=app/
+
+
+after_success:
+  - coveralls
+
