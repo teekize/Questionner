@@ -27,7 +27,8 @@ def post_question():
             "createdBy" : asked_by,
             "body" : body,
             "title" : title,
-            "meetup" : meetup
+            "meetup" : meetup,
+            "votes" : 0
         }
 
         question_model.questions.append(new_question)
@@ -40,5 +41,26 @@ def post_question():
                  "meetup" : new_question["meetup"]
                 }
             ]
+            }
+        )
+
+@question_blueprint.route("/questions/<int:question_id>/upvote", methods=["PATCH"])
+def upvote_question(question_id):
+    requested_question=[question for question in question_model.questions if question["id"]== question_id]
+    if len(requested_question) == 0:
+        return jsonify({"status": 404,
+                        "error" : "Resource not found"
+                        })
+
+    else:
+        requested_question[0]["votes"] = requested_question[0]["votes"]+1
+        return jsonify(
+            {"status": 201,
+             "data" : [
+                 {"meetup": requested_question[0]["meetup"],
+                 "title" : requested_question[0]["title"],
+                 "body" : requested_question[0]["body"],
+                 "votes" : requested_question[0]["votes"]}
+             ]
             }
         )
