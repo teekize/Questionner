@@ -10,12 +10,13 @@ class TestQuestionsEndpoint(unittest.TestCase):
         self.client=self.app.test_client()
         self.date=datetime.datetime.utcnow()
         self.meetup={
-            "id":1,#Integer,
+            # "id":1,#Integer,
             # "createdOn": "2019, 1, 9, 15, 30, 0,",#Date,
+            "name":"teeka",
             "location":"nairobi", #String,
             "images" : "pintrest.png",#[String, String], // OPTIONAL: URL to the image location
             "topic" : "what is Andela",#String,
-            "happeningOn" :"2019, 1, 9, 15, 30, 0,",#Date, // when the meetup is holding
+            # "happeningOn" :"2019, 1, 9, 15, 30, 0,",#Date, // when the meetup is holding
             "Tags" : "dev"#[String, String, ....],
 
         }
@@ -24,15 +25,15 @@ class TestQuestionsEndpoint(unittest.TestCase):
 
     def test_create_meetup(self):
         '''tests the creation of a meetup requires POST method'''
-        response=self.client.post("/meetups/", data=json.dumps(self.meetup), content_type=("application/json"))
+        response=self.client.post("/meetups", data=json.dumps(self.meetup), content_type="application/json")
         results=json.loads(response.data.decode("utf-8"))
         self.assertEqual(results.status_code, 201)
-        self.assertIn("nairobi", results)
+        self.assertIn("nairobi", str(results))
 
     def test_get_one_meetup(self):
         '''tests method for getting a meetup requires PATCH method'''
 
-        response=self.client.post("/meetups/", data=json.dumps(self.meetup), content_type=("application/json"))
+        response=self.client.post("/meetups/", data=json.dumps(self.meetup), content_type="application/json")
         results=json.loads(response.data.decode("utf-8"))
         resluts_id=results["id"]
         self.assertEqual(results.status_code, 201)
@@ -49,7 +50,7 @@ class TestQuestionsEndpoint(unittest.TestCase):
 
     def test_get_all_meetup(self):
             '''tests the method for gettting all meetups'''
-            response_1=self.client.post("/meetups/", data=json.dumps(self.meetup), content_type=("application/json"))
+            response_1=self.client.post("/meetups/", data=json.dumps(self.meetup), content_type="application/json")
             results_1=json.loads(response_1.data.decode("utf-8"))
             # resluts_id=results["id"]
             self.assertEqual(results_1.status_code, 201)
@@ -64,3 +65,5 @@ class TestQuestionsEndpoint(unittest.TestCase):
             # assertEqual(results.status_code, )#the status code for updating
 
 
+if __name__ == "__maain__":
+    unittest.main()
