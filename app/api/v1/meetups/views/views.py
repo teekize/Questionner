@@ -63,6 +63,17 @@ def get_one_meetup(meetup_id):
         }
     )
     
+
+@meetups.route("/meetups/upcoming", methods=["GET"])
+def get_all_meetup():
+    meetup_requested=[meetup for meetup in meetup.meet_ups ]
+    return jsonify(
+        {"status":200,
+        "data": [
+                meetup_requested[0:]
+                ]
+        }
+    )
     
     #     
 
