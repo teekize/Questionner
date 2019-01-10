@@ -48,5 +48,24 @@ def create_meetup():
                        }
                         )
 
+@meetups.route("/meetups/<int:meetup_id>", methods=["GET"])
+def get_one_meetup(meetup_id):
+    meetup_requested=[meetup for meetup in meetup.meet_ups if meetup["id"]==meetup_id]
+    return jsonify(
+        {"status":200,
+        "data": [
+                {"id":meetup_requested[0]["id"], 
+                "topic":meetup_requested[0]["topic"], 
+                "location":meetup_requested[0]["location"], 
+                "tag":meetup_requested[0]["topic"]
+                }
+                ]
+        }
+    )
+    
+    
+    #     
+
+
 
         #name, location, topic, tags, images
