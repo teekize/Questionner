@@ -6,7 +6,7 @@ meet_ups=[
     {
         "id":1,
         "createdOn" : "2019, 1, 10",#Date,
-        # "location" : "Nairobi",#String,
+        "location" : "Nairobi",#String,
         "images" : "pintrest.png",#[String, String], // OPTIONAL: URL to the image location
         "topic" : "effect of global warming",#String,
         "happeningOn" : '2019, 1, 10',#Date, // when the meetup is holding
