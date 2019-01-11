@@ -40,13 +40,13 @@ This will give you what you need for the aplication to run locally
 ## Endpoints
  | Method  	|   Endpoint	                            |  Description 	    |
 |---	    |---	                                    |---	            |
-|  POST 	| /api/v1/meetups  	                        |   this endpoint adds a new meetup	    |   
-|   GET	    | /api/v1/meetups/<int:meetup_id>           |   this endpoint gets you a specific meetup	|
-|  GET 	    | /api/v1/meetups/upcoming	                |   this endpoint gets all upcoming meetups	|
-|  POST	    | /api/v1/questions	                        |   this endpints creates a new question	|
-|  PATCH 	| /api/v1/questions/<int:question_id>/upvote|   this endpoint upvotes a question	|
-|  PATCH 	| /api/v1/questions/<int:question_id>/downvote|  this endpoint  downvotes a question	|
-|  POST 	| /api/v1/meetups/<int:meetup_id>/rsvp 	      |   this questions create an rsvp response	|
+|  POST 	| `/api/v1/meetups`  	                        |   this endpoint adds a new meetup	    |   
+|   GET	    | `/api/v1/meetups/<int:meetup_id> `          |   this endpoint gets you a specific meetup	|
+|  GET 	    | `/api/v1/meetups/upcoming`	                |   this endpoint gets all upcoming meetups	|
+|  POST	    | `api/v1/questions`	                        |   this endpints creates a new question	|
+|  PATCH 	| `/api/v1/questions/<int:question_id>/upvote`|   this endpoint upvotes a question	|
+|  PATCH 	| `/api/v1/questions/<int:question_id>/downvote`|  this endpoint  downvotes a question	|
+|  POST 	| `/api/v1/meetups/<int:meetup_id>/rsvp` 	      |   this questions create an rsvp response	|
 
 Built with
 1. Flask
