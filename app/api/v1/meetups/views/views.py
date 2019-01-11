@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.api.v1.meetups.models import meetup #MeetUp, meetups
 import datetime
 
-meetups=Blueprint("meetups", __name__) #)
+meetups=Blueprint("meetups", __name__, url_prefix = "/api/v1") #)
 
 @meetups.route("/meetups", methods=["POST"])
 def create_meetup():
