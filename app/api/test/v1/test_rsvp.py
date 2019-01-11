@@ -1,11 +1,11 @@
 import datetime
 import unittest
 from flask import jsonify, json
-from app import createapp
+from app import createapp 
 
 class TestsForRsvp(unittest.TestCase):
     def setUp(self):
-        self.app=createapp()
+        self.app= createapp()
         self.app.testing=True
         self.client=self.app.test_client()
         self.rsvp={
@@ -26,12 +26,17 @@ class TestsForRsvp(unittest.TestCase):
         }
 
     def test_create_rsvp(self):
-        response=self.client.post("/meetup/", data=json.dumps(self.meetup), content_type=("application/json"))
-        results=json.loads(response.data.decode("utf-8"))
+        response=self.client.post("/api/v1/meetup", data=json.dumps(self.meetup), content_type="application/json")
+        results=json.loads(response.data.decode())
         resluts_id=results["id"]
         self.assertEqual(results.status_code, 201)
         self.assertIn("nairobi", results)
 
-        response=self.client.post("/meetups/{}/rsvp".format(resluts_id), data=json.dumps(self.rsvp), content_type="application/json")
-        results=json.loads(response.data.decode("utf-8"))
+        response=self.client.post("/api/v1/meetups/{}/rsvp".format(resluts_id), 
+                                                                        data=json.dumps(self.rsvp), 
+                                                                        content_type="application/json")
+        results=json.loads(response.data.decode())
         self.assertEqual(results, 201)
+
+if __name__ == "__main__":
+    unittest.main()
