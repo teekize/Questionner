@@ -4,6 +4,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/teekize/Questionner/badge.svg?branch=develope)](https://coveralls.io/github/teekize/Questionner?branch=develope)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/bae695f936d43d643a98/maintainability)](https://codeclimate.com/github/teekize/Questionner/maintainability)
+
 ## Questionner
 
 Crowd-source questions for a meetup. Questioner helps the meetup organizer prioritize questions to be answered. Other users can vote on asked questions and they bubble to the top or bottom of the log
