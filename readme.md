@@ -4,7 +4,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/teekize/Questionner/badge.svg?branch=develope)](https://coveralls.io/github/teekize/Questionner?branch=develope)
 
-Questionner
+## Questionner
 
 Crowd-source questions for a meetup. Questioner helps the meetup organizer prioritize questions to be answered. Other users can vote on asked questions and they bubble to the top or bottom of the log
 
@@ -18,26 +18,27 @@ This will give you what you need for the aplication to run locally
 3. Git
 
 ## Installing 
- clone this repository
- have the python installed in your 
+ 1.clone this repository
+ [repo](https://github.com/teekize/Questionner.git)
+ have the python installed in your machine
  
- Install a virtual environment
+ 3. Install a virtual environment
  this command is for windows
  `pip venv venv`
 
- Then you activate the virtual envirionmnet
+ 4. Then you activate the virtual envirionmnet
  this is for windows
  `venv\Scripts\activate`
 
- To test the api in your local machine
+ 5. To test the api in your local machine
  install the the reuirements file 
  `pip install -r requirements.txt`
 
- To run the application 
+ 6. To run the application 
  run the `run.py` file 
 
  Then test all the endpoinst using POSTMAN
-
+## Endpoints
  | Method  	|   Endpoint	                            |  Description 	    |
 |---	    |---	                                    |---	            |
 |  POST 	| /api/v1/meetups  	                        |   this endpoint adds a new meetup	    |   
@@ -49,4 +50,7 @@ This will give you what you need for the aplication to run locally
 |  POST 	| /api/v1/meetups/<int:meetup_id>/rsvp 	      |   this questions create an rsvp response	|
 
 Built with
-. Flask
+1. Flask
+
+## Author 
+Teeka Elvis
