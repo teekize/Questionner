@@ -1,5 +1,52 @@
-Questioner
+
 [![Build Status](https://travis-ci.com/teekize/Questionner.svg?branch=develope)](https://travis-ci.com/teekize/Questionner)
 
 
 [![Coverage Status](https://coveralls.io/repos/github/teekize/Questionner/badge.svg?branch=develope)](https://coveralls.io/github/teekize/Questionner?branch=develope)
+
+Questionner
+
+Crowd-source questions for a meetup. Questioner helps the meetup organizer prioritize questions to be answered. Other users can vote on asked questions and they bubble to the top or bottom of the log
+
+## Getting started
+This will give you what you need for the aplication to run locally
+
+## Requirements
+
+1. python 3.7
+2. Postman
+3. Git
+
+## Installing 
+ clone this repository
+ have the python installed in your 
+ 
+ Install a virtual environment
+ this command is for windows
+ `pip venv venv`
+
+ Then you activate the virtual envirionmnet
+ this is for windows
+ `venv\Scripts\activate`
+
+ To test the api in your local machine
+ install the the reuirements file 
+ `pip install -r requirements.txt`
+
+ To run the application 
+ run the `run.py` file 
+
+ Then test all the endpoinst using POSTMAN
+
+ | Method  	|   Endpoint	                            |  Description 	    |
+|---	    |---	                                    |---	            |
+|  POST 	| /api/v1/meetups  	                        |   this endpoint adds a new meetup	    |   
+|   GET	    | /api/v1/meetups/<int:meetup_id>           |   this endpoint gets you a specific meetup	|
+|  GET 	    | /api/v1/meetups/upcoming	                |   this endpoint gets all upcoming meetups	|
+|  POST	    | /api/v1/questions	                        |   this endpints creates a new question	|
+|  PATCH 	| /api/v1/questions/<int:question_id>/upvote|   this endpoint upvotes a question	|
+|  PATCH 	| /api/v1/questions/<int:question_id>/downvote|  this endpoint  downvotes a question	|
+|  POST 	| /api/v1/meetups/<int:meetup_id>/rsvp 	      |   this questions create an rsvp response	|
+
+Built with
+. Flask
