@@ -3,7 +3,7 @@ from app.api.v1.rsvp.models import rsvp_models
 from app.api.v1.meetups.models import meetup 
 import datetime
 
-rsvp_blueprint=Blueprint("rsvp_blueprint", __name__)
+rsvp_blueprint=Blueprint("rsvp_blueprint", __name__, url_prefix= "/api/v1")
 
 @rsvp_blueprint.route("/meetups/<int:meetup_id>/rsvp", methods=["POST"])
 def post_rsvp(meetup_id):
@@ -25,7 +25,7 @@ def post_rsvp(meetup_id):
     else:
         new_rsvp ={
             "id" : len(rsvp_models.rsvp_models) +1,
-            "meetup" : request.json["meetup"],
+            "meetup" : requested_meetup[0]["id"],
             "user" : request.json["user"],
             "response" : response
         }
@@ -34,7 +34,7 @@ def post_rsvp(meetup_id):
         return jsonify({"status":201, 
                         "data" : [
                                  {
-                                   "meetup" : new_rsvp["meetup"],
+                                   "meetup" : new_rsvp["id"],
                                    "topic" : requested_meetup[0]["topic"],
                                    "status" : new_rsvp["response"]
                                  }
