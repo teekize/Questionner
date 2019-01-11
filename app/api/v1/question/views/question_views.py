@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.api.v1.question.models import question_model#MeetUp, meetups
 import datetime
 
-question_blueprint=Blueprint("question_blueprint", __name__)
+question_blueprint=Blueprint("question_blueprint", __name__, url_prefix= "/api/v1")
 
 @question_blueprint.route("/questions", methods=["POST"])
 def post_question():
@@ -38,7 +38,8 @@ def post_question():
                 {"user": new_question["createdBy"],
                  "title" : new_question["title"],
                  "body" : new_question["body"],
-                 "meetup" : new_question["meetup"]
+                 "meetup" : new_question["meetup"],
+                 "id" : new_question["id"]
                 }
             ]
             }
@@ -50,7 +51,7 @@ def upvote_question(question_id):
     if len(requested_question) == 0:
         return jsonify({"status": 404,
                         "error" : "Resource not found"
-                        })
+                        }), 404
 
     else:
         requested_question[0]["votes"] = requested_question[0]["votes"]+1
@@ -63,7 +64,7 @@ def upvote_question(question_id):
                  "votes" : requested_question[0]["votes"]}
              ]
             }
-        )
+        ), 200
 
 @question_blueprint.route("/questions/<int:question_id>/downvote", methods=["PATCH"])
 def downvote_question(question_id):
@@ -71,7 +72,7 @@ def downvote_question(question_id):
     if len(requested_question) == 0:
         return jsonify({"status": 404,
                         "error" : "Resource not found"
-                        })
+                        }), 404
 
     else:
         requested_question[0]["votes"] = requested_question[0]["votes"]-1
@@ -84,4 +85,4 @@ def downvote_question(question_id):
                  "votes" : requested_question[0]["votes"]}
              ]
             }
-        )
+        ), 200
