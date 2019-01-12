@@ -7,14 +7,11 @@ meetups=Blueprint("meetups", __name__, url_prefix = "/api/v1") #)
 @meetups.route("/meetups", methods=["POST"])
 def create_meetup():
     if not request.json or not "topic" in request.json:
-        return jsonify({"message":"Required fields missing"})
-    
-    
-    #     
+        return jsonify({"message":"Required fields missing"}), 204
 
-    name = request.json["name"]
-    location = request.json["location"]
-    topic = request.json["topic"]
+    name = request.json.get("name")
+    location = request.json.get("location")
+    topic = request.json.get("topic")
     tags = request.json["tags"]
     images = request.json["images"]
     happeningOn=request.json["happeningOn"]
@@ -35,18 +32,19 @@ def create_meetup():
         }
 
         meetup.meet_ups.append(new_meetup)
-        return jsonify({"status_code":201, 
+        return jsonify({"status_code": 201, 
                         "data" : [
                                  {"id" :new_meetup["id"], 
                                 "location":new_meetup["location"],
                                 "topic": new_meetup["topic"],
                                 "happeningOn": new_meetup["happeningOn"],
-                                "tags": new_meetup["tags"]
+                                "tags": new_meetup["tags"],
+                                "images" : new_meetup["images"]
                                  }
                                 ]
 
                        }
-                        )
+                        ) ,201
 
 @meetups.route("/meetups/<int:meetup_id>", methods=["GET"])
 def get_one_meetup(meetup_id):
