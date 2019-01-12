@@ -18,7 +18,7 @@ class TestQuestionsEndpoint(unittest.TestCase):
             "tags" : "dev",
             "happeningOn" : "2019-1-10"
         }
-        
+
     def post_meetup(self):
         response=self.client.post("/api/v1/meetups", data = json.dumps(self.meetup),
                                                     content_type = "application/json")
@@ -40,7 +40,6 @@ class TestQuestionsEndpoint(unittest.TestCase):
         resluts_id = results["data"][0]["id"]
         self.assertEqual(response.status_code, 201)
         
-
         response_1 = self.client.get("/api/v1/meetups/{}".format(resluts_id))
         self.assertEqual(response_1.status_code, 200)
         
@@ -52,7 +51,6 @@ class TestQuestionsEndpoint(unittest.TestCase):
             response = self.post_meetup()
             self.assertEqual(response.status_code, 201)
            
-             
             response_1 = self.client.get("/api/v1/meetups/upcoming")
             self.assertEqual(response_1.status_code, 200)
 
