@@ -15,44 +15,46 @@ class TestQuestionsEndpoint(unittest.TestCase):
             "location":"nairobi", 
             "images" : "pintrest.png",
             "topic" : "what is Andela",
-            "tags" : "dev"
+            "tags" : "dev",
+            "happeningOn" : "2019-1-10"
         }
-
+        
+    def post_meetup(self):
+        response=self.client.post("/api/v1/meetups", data = json.dumps(self.meetup),
+                                                    content_type = "application/json")
+        return response
 
     def test_create_meetup(self):
         '''tests the creation of a meetup requires POST method'''
-        response = self.client.post("/api/v1/meetups", data = json.dumps(self.meetup), content_type="application/json")
-        results = json.loads(response.data.decode("utf-8"))
-        self.assertEqual(results.status_code, 201)
-        self.assertIn("nairobi", str(results))
+        response = self.client.post("/api/v1/meetups", 
+                                                        data = json.dumps(self.meetup), 
+                                                        content_type="application/json")
+
+        self.assertEqual(response.status_code, 201)
+        
 
     def test_get_one_meetup(self):
-        '''tests method for getting a meetup requires GET method'''
-
-        response = self.client.post("/api/v1/meetups", data=json.dumps(self.meetup), content_type="application/json")
-        results = json.loads(response.data.decode("utf-8"))
-        resluts_id = results["id"]
-        self.assertEqual(results.status_code, 201)
-        self.assertIn("nairobi", results)
+        '''tests  getting a specific meetup requires GET method'''
+        response = self.post_meetup()
+        results = json.loads(response.data.decode())
+        resluts_id = results["data"][0]["id"]
+        self.assertEqual(response.status_code, 201)
+        
 
         response_1 = self.client.get("/api/v1/meetups/{}".format(resluts_id))
-        results_1 = json.loads(response_1.data.decode('utf-8'))
-        self.assertEqual(results_1.status_code, 200)
-        self.assertIn("what is andela", str(response_1))
+        self.assertEqual(response_1.status_code, 200)
+        
 
         
 
     def test_get_all_meetup(self):
-            '''tests the method for gettting all meetups'''
-            response_1 = self.client.post("/api/v1/meetups", data=json.dumps(self.meetup), content_type="application/json")
-            results_1 = json.loads(response_1.data.decode("utf-8"))
-            resluts_id = results_1["id"]
-            self.assertEqual(results_1.status_code, 201)
-            self.assertIn("nairobi", str(results_1))
+            '''tests the for gettting all upcoming  meetups'''
+            response = self.post_meetup()
+            self.assertEqual(response.status_code, 201)
+           
              
-            response = self.client.get("/api/v1/meetups/{}/upcoming".format(resluts_id))
-            results = response.data.decode()
-            self.assertEqual(results.status_code, 200)
+            response_1 = self.client.get("/api/v1/meetups/upcoming")
+            self.assertEqual(response_1.status_code, 200)
 
          
 
