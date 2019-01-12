@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.api.v1.question.models import question_model#MeetUp, meetups
+from app.api.v1.question.models import question_model
 import datetime
 
 question_blueprint=Blueprint("question_blueprint", __name__, url_prefix= "/api/v1")
@@ -33,17 +33,18 @@ def post_question():
 
         question_model.questions.append(new_question)
         return jsonify(
-            {"status":201,
-            "data":[
-                {"user": new_question["createdBy"],
-                 "title" : new_question["title"],
-                 "body" : new_question["body"],
-                 "meetup" : new_question["meetup"],
-                 "id" : new_question["id"]
-                }
-            ]
+            {"status": 201,
+             "data": [
+                        {
+                        "user": new_question["createdBy"],
+                        "title" : new_question["title"],
+                        "body" : new_question["body"],
+                        "meetup" : new_question["meetup"],
+                        "id" : new_question["id"]
+                        }
+                    ]
             }
-        )
+        ), 201
 
 @question_blueprint.route("/questions/<int:question_id>/upvote", methods=["PATCH"])
 def upvote_question(question_id):
@@ -61,10 +62,11 @@ def upvote_question(question_id):
                  {"meetup": requested_question[0]["meetup"],
                  "title" : requested_question[0]["title"],
                  "body" : requested_question[0]["body"],
-                 "votes" : requested_question[0]["votes"]}
+                 "votes" : requested_question[0]["votes"]
+                 }
              ]
             }
-        ), 200
+        ), 201
 
 @question_blueprint.route("/questions/<int:question_id>/downvote", methods=["PATCH"])
 def downvote_question(question_id):
@@ -85,4 +87,4 @@ def downvote_question(question_id):
                  "votes" : requested_question[0]["votes"]}
              ]
             }
-        ), 200
+        ), 201
