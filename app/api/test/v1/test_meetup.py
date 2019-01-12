@@ -19,6 +19,15 @@ class TestQuestionsEndpoint(unittest.TestCase):
             "happeningOn" : "2019-1-10"
         }
 
+        self.meetup2 = {
+          
+            "name":"teeka",
+            "location":"nairobi", 
+            "images" : "pintrest.png",
+            "tags" : "dev",
+            "happeningOn" : "2019-1-10"
+        }
+
     def post_meetup(self):
         response=self.client.post("/api/v1/meetups", data = json.dumps(self.meetup),
                                                     content_type = "application/json")
@@ -31,7 +40,14 @@ class TestQuestionsEndpoint(unittest.TestCase):
                                                         content_type="application/json")
 
         self.assertEqual(response.status_code, 201)
-        
+    
+    def test_no_topic(self):
+        '''test where no topic is given'''
+        response = self.client.post("/api/v1/meetups", 
+                                                        data = json.dumps(self.meetup2), 
+                                                        content_type="application/json")                                             
+        self.assertEqual(response.status_code, 204)
+
 
     def test_get_one_meetup(self):
         '''tests  getting a specific meetup requires GET method'''
