@@ -3,6 +3,7 @@ from app.api.v1.meetups.models import MeetUpModel
 questiondb =[]
 
 class QuestionModel(MeetUpModel):
+    """ contains all methods to be used by Question endpoints"""
     def __init__(self):
         self.db = questiondb
         self.vote = 0
