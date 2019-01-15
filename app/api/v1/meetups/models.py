@@ -42,7 +42,8 @@ class MeetUpModel:
                        }
     
     def get_all_upcoming(self):
-        results = [meetup for meetup in self.db if meetup["happeningOn"] > datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M')]
+        results = [meetup for meetup in self.db if 
+        meetup["happeningOn"] > datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M')]
         if not results:
             return {"error" : "no  upcoming meetups", "satus" : 404}
         return {"data" : results}
