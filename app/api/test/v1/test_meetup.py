@@ -104,5 +104,8 @@ class TestQuestionsEndpoint(unittest.TestCase):
             response_1 = self.client.get("/api/v1/meetups/upcoming")
             self.assertEqual(response_1.status_code, 200)
 
+    def tearDown(self):
+        self.app = None
+
          
 
