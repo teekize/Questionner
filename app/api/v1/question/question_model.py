@@ -5,24 +5,25 @@ questiondb =[]
 class QuestionModel(MeetUpModel):
     """ contains all methods to be used by Question endpoints"""
     def __init__(self):
-        self.db = questiondb
+        self.dbq = questiondb
         self.vote = 0
-        self.createdOn = datetime.datetime.utcnow().strftime('%Y-%M-%d  %I : %M %S %p')
+        self.ido = len(questiondb) +1
+        self.createdOn = datetime.datetime.utcnow().strftime('%Y-%m-%d  %I : %M %S %p')
         super().__init__()
         
     
     def save(self, createdBy, meetup, title, body):
         new_question = {
-                        "question_id" : self.id,
+                        "question_id" : self.ido,
                         "createdBy" : createdBy,
-                        "createdOn" : self.day_,
+                        "createdOn" : self.createdOn,
                         "meetup" : meetup,
                         "title" : title,
                         "body" : body,
                         "vote" : self.vote
                         }
 
-        self.db.append(new_question)
+        self.dbq.append(new_question)
         return {"status" : 201,
                 "data" : [
                             {
@@ -37,7 +38,7 @@ class QuestionModel(MeetUpModel):
                }
 
     def upvote_downvote_question(self, question_id, _num):
-        result = [question for question in self.db if question["question_id"] == question_id]
+        result = [question for question in self.dbq if question["question_id"] == question_id]
         if not result:
             return {
                     "status" : 404,
@@ -46,8 +47,11 @@ class QuestionModel(MeetUpModel):
         else:
             if _num == 0:
                 result[0]["vote"] = result[0]["vote"] +1
-            if _num == 1:
-                result[0]["vote"] = result[0]["vote"] -1
+
+            if _num == 1 and result[0]["vote"] <= 0:
+                result[0]["vote"] == 0
+            elif _num == 1 and result[0]["vote"] <= 1:
+                result[0]["vote"] = result[0]["vote"]-1
             return {
                     "status" :200,
                     "data" : [
