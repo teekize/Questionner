@@ -5,26 +5,45 @@ from .... import createapp
 
 class TestQuestionsEndpoint(unittest.TestCase):
     def setUp(self):
+        '''setup the data and application that will be used'''
         self.app = createapp()
         self.app.testing = True
         self.client = self.app.test_client()
-        self.date = datetime.datetime.utcnow()
         self.meetup = {
           
             "name":"teeka",
             "location":"nairobi", 
-            "images" : "pintrest.png",
+            "image" : "pintrest.png",
             "topic" : "what is Andela",
-            "tags" : "dev",
-            "happeningOn" : "2019-1-10"
+            "tag" : "dev",
+            "happeningOn" : "2019-01-10 10:30"
+            
         }
-
-        self.meetup2 = {
+        self.meetup_invalid_date = {
           
             "name":"teeka",
             "location":"nairobi", 
-            "images" : "pintrest.png",
-            "tags" : "dev",
+            "image" : "pintrest.png",
+            "topic" : "what is Andela",
+            "tag" : "dev",
+            "happeningOn" : "2019-30-01"
+        }
+        self.meetup_not_string = {
+          
+            "name":1,
+            "location":"nairobi", 
+            "image" : "pintrest.png",
+            "topic" : "what is Andela",
+            "tag" : "dev",
+            "happeningOn" : "2019-01-30"
+        }
+
+        self.meetup_incorrect = {
+          
+            "name":"teeka",
+            "location":"nairobi", 
+            "image" : "pintrest.png",
+            "tag" : "dev",
             "happeningOn" : "2019-1-10"
         }
 
@@ -41,12 +60,27 @@ class TestQuestionsEndpoint(unittest.TestCase):
 
         self.assertEqual(response.status_code, 201)
     
-    def test_no_topic(self):
+    def test_no_mising_one_field(self):
         '''test where no topic is given'''
         response = self.client.post("/api/v1/meetups", 
-                                                        data = json.dumps(self.meetup2), 
+                                                        data = json.dumps(self.meetup_incorrect), 
                                                         content_type="application/json")                                             
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 400)
+
+    def test_invalid_datetime(self):
+        '''test where no topic is given'''
+        response = self.client.post("/api/v1/meetups", 
+                                                        data = json.dumps(self.meetup_invalid_date), 
+                                                        content_type="application/json")                                             
+        self.assertEqual(response.status_code, 404)
+
+    def test_not_string(self):
+        '''test where no topic is given'''
+        response = self.client.post("/api/v1/meetups", 
+                                                        data = json.dumps(self.meetup_not_string), 
+                                                        content_type="application/json")                                             
+        self.assertEqual(response.status_code, 404)
+
 
 
     def test_get_one_meetup(self):
