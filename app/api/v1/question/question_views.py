@@ -37,7 +37,7 @@ def post_question():
     if Validator(details) == False:
         return jsonify({"status": 400,
                         "error" : "invalid data"
-                        })
+                        }), 400
 
     results = question.save(createdBy, meetup,title, body)
     return jsonify(results), 201

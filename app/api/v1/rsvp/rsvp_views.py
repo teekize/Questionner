@@ -9,7 +9,8 @@ rsvp_blueprint=Blueprint("rsvp_blueprint", __name__, url_prefix= "/api/v1")
 @rsvp_blueprint.route("/meetups/<int:meetup_id>/rsvp", methods=["POST"])
 def post_rsvp(meetup_id):
     incoming_request = request.json
-    required_fields = "response", "meetupid", "user"
+    required_fields = "response", "user"
+
     for field in required_fields:
         if field not in incoming_request or not incoming_request:
             return jsonify({
@@ -18,7 +19,7 @@ def post_rsvp(meetup_id):
                 }), 403
     response_from_user =request.json["response"]
     user_to_rsvp = request.json["user"]
-    meetup_id_to_rsvp = request.json["id"]
+    meetup_id_to_rsvp = meetup_id
 
     result_from_save = instance_rsvp.save(meetup_id_to_rsvp, response_from_user, user_to_rsvp)
 

@@ -30,19 +30,20 @@ class MeetUpModel:
         meetupdb.append(new_meetup)
         return {"status_code": 201, 
                         "data" : [
-                                    {"id" : new_meetup["id"], 
-                                    "location": new_meetup["location"],
-                                    "topic": new_meetup["topic"],
-                                    "happeningOn": new_meetup["happeningOn"],
-                                    "tag": new_meetup["tag"],
-                                    "image" : new_meetup["image"]
+                                    {
+                                        "id" : new_meetup["id"], 
+                                        "location": new_meetup["location"],
+                                        "topic": new_meetup["topic"],
+                                        "happeningOn": new_meetup["happeningOn"],
+                                        "tag": new_meetup["tag"],
+                                        "image" : new_meetup["image"]
                                     }
                                 ]
                        }
     
     def get_all_upcoming(self):
         results = [meetup for meetup in self.db if 
-                meetup["happeningOn"] > datetime.datetime.today().strftime("'%Y-%M-%d  %I : %M %S %p'")]
+        meetup["happeningOn"] > datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M')]
         if not results:
             return {"error" : "no  upcoming meetups", "satus" : 404}
         return {"data" : results}

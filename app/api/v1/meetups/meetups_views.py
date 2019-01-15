@@ -15,14 +15,19 @@ stating that its missing a required field
 
 """
 
-def Validator(details):
+def Validator(details, date):
     for value in details:
         if type(value) != str:
             return False
+        
     
     for input_ in details:
         if len(input_) == 0:
             return False
+    try:
+        datetime.datetime.strptime(date, '%Y-%m-%d %H:%M')
+    except ValueError:
+        return False
     
     
 @meetups.route("/meetups", methods=["POST"])
@@ -30,23 +35,24 @@ def create_meetup():
     payload = request.json
     required = "name", "location", "topic", "tag", "image" , "happeningOn"
 
-    for item in required:  
-        if item not in payload or not payload:
+    for field in required:  
+        if field not in payload :
             return jsonify({"error" : "Bad request"}), 400
 
     name = request.json.get("name")
     location = request.json.get("location")
     topic = request.json.get("topic")
-    tag = request.json.get("tag", "")
-    image = request.json.get("image", "")
+    tag = request.json.get("tag",)
+    image = request.json.get("image",)
     happeningOn=request.json.get("happeningOn")
 
     details = name, location, topic, tag, image, happeningOn
+    date = happeningOn
 
-    if Validator(details) == False:
-        return jsonify({"error": "check your meetup details "}),
-
-    return jsonify(model.save(topic, happeningOn, name, location, tag, image)), 201
+    if Validator(details, date) == False:
+        return jsonify({"error": "check your meetup details "}),404
+    response = model.save(topic, happeningOn, name, location, tag, image)
+    return jsonify(response), 201
 
 @meetups.route("/meetups/<int:meetup_id>", methods=["GET"])
 def get_one_meetup(meetup_id):
