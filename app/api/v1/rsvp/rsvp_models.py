@@ -5,7 +5,7 @@ rsvp_db = []
 
 class RsvpModel(QuestionModel):
     def save(self, _id, response, user):
-        requested_meetup = [meetup for meetup in meetupdb if meetup["id"] == _id]
+        requested_meetup = [meetup for meetup in self.db if meetup["id"] == _id]
         if not requested_meetup:
             return {"status" : 403,
                     "message" : "that meetup is not existent"
@@ -17,7 +17,7 @@ class RsvpModel(QuestionModel):
                     "user" : user,
                     "response" : response
                    }
-        rsvp_db.append(_id, response, user)
+        rsvp_db.append(new_rsvp)
         
         return {"status" : 201,
                 "data" : [
