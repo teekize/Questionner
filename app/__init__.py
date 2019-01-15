@@ -1,7 +1,7 @@
 from flask import Flask
-from app.api.v1.meetups.views.views import meetups
-from app.api.v1.question.views.question_views import question_blueprint
-from app.api.v1.rsvp.views.rsvp_views import rsvp_blueprint
+from app.api.v1.meetups.meetups_views import meetups
+from app.api.v1.question.question_views import question_blueprint
+from app.api.v1.rsvp.rsvp_views import rsvp_blueprint
 
 
 def createapp():
