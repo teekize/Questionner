@@ -1,10 +1,11 @@
 import datetime
 import unittest
 from flask import jsonify, json
-from .... import createapp 
+from app import createapp 
 
 class TestsForRsvp(unittest.TestCase):
     def setUp(self):
+        '''sets ups the data to be used'''
         self.app= createapp()
         self.app.testing=True
         self.client=self.app.test_client()
@@ -25,6 +26,7 @@ class TestsForRsvp(unittest.TestCase):
         }
 
     def test_create_rsvp(self):
+        '''tests the creation of an rsvp'''
         response=self.client.post("/api/v1/meetups", data = json.dumps(self.meetup),
                                                     content_type = "application/json")
         results = json.loads(response.data.decode())
@@ -35,3 +37,7 @@ class TestsForRsvp(unittest.TestCase):
                                                                                   content_type ="application/json")
         self.assertEqual(response.status_code, 201)
 
+
+    def tearDown(self):
+        '''Tears down the application after tests are done'''
+        self.app = None
