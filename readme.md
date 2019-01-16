@@ -1,7 +1,9 @@
 
 [![Build Status](https://travis-ci.com/teekize/Questionner.svg?branch=develope)](https://travis-ci.com/teekize/Questionner)
-[![Coverage Status](https://coveralls.io/repos/github/teekize/Questionner/badge.svg?branch=develope)](https://coveralls.io/github/teekize/Questionner?branch=develope)
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/bae695f936d43d643a98/maintainability)](https://codeclimate.com/github/teekize/Questionner/maintainability)
+
+[![Coverage Status](https://coveralls.io/repos/github/teekize/Questionner/badge.svg?branch=develope)](https://coveralls.io/github/teekize/Questionner?branch=develope)
 
 ## Questionner
 
@@ -41,15 +43,13 @@ This will give you what you need for the aplication to run locally
  | Method  	|   Endpoint	                            |  Description 	    |
 |---	    |---	                                    |---	            |
 |  POST 	| `/api/v1/meetups`  	                        |   this endpoint adds a new meetup	    |   
-|   GET	    | `/api/v1/meetups/<int:meetup_id> `          |   this endpoint gets you a specific meetup	|
+|   GET	    | `/api/v1/meetups/<meetup_id> `          |   this endpoint gets you a specific meetup	|
 |  GET 	    | `/api/v1/meetups/upcoming`	                |   this endpoint gets all upcoming meetups	|
 |  POST	    | `api/v1/questions`	                        |   this endpints creates a new question	|
-|  PATCH 	| `/api/v1/questions/<int:question_id>/upvote`|   this endpoint upvotes a question	|
-|  PATCH 	| `/api/v1/questions/<int:question_id>/downvote`|  this endpoint  downvotes a question	|
-|  POST 	| `/api/v1/meetups/<int:meetup_id>/rsvp` 	      |   this questions create an rsvp response	|
+|  PATCH 	| `/api/v1/questions/<question_id>/upvote`|   this endpoint upvotes a question	|
+|  PATCH 	| `/api/v1/questions/<question_id>/downvote`|  this endpoint  downvotes a question	|
+|  POST 	| `/api/v1/meetups/<meetup_id>/rsvp` 	      |   this questions create an rsvp response	|
 
-Built with
-1. Flask
 
 [Heroku link](https://questionner-v1-teeka.herokuapp.com/)
 ## Author 
