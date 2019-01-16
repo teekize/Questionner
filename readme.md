@@ -50,8 +50,6 @@ This will give you what you need for the aplication to run locally
 |  PATCH 	| `/api/v1/questions/<question_id>/downvote`|  this endpoint  downvotes a question	|
 |  POST 	| `/api/v1/meetups/<meetup_id>/rsvp` 	      |   this questions create an rsvp response	|
 
-Built with
-1. Flask
 
 [Heroku link](https://questionner-v1-teeka.herokuapp.com/)
 ## Author 
