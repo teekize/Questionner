@@ -13,6 +13,7 @@ class QuestionModel(MeetUpModel):
         
     
     def save(self, createdBy, meetup, title, body):
+        """handles the saving of data"""
         new_question = {
                         "question_id" : self.ido,
                         "createdBy" : createdBy,
@@ -38,6 +39,7 @@ class QuestionModel(MeetUpModel):
                }
 
     def upvote_downvote_question(self, question_id, _num):
+        """ this models handels upvoting and downvoting """
         result = [question for question in self.dbq if question["question_id"] == question_id]
         if not result:
             return {
