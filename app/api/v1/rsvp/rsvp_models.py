@@ -4,6 +4,7 @@ from app.api.v1.question.question_model import QuestionModel
 rsvp_db = []
 
 class RsvpModel(QuestionModel):
+    '''this is the class model for RsvpModel'''
     def save(self, _id, response, user):
         requested_meetup = [meetup for meetup in self.db if meetup["id"] == _id]
         if not requested_meetup:
