@@ -1,10 +1,12 @@
 from flask import Blueprint, jsonify, request
 from app.api.v1.meetups.models  import MeetUpModel
+from app.api.v1.validation import ValidationModule
 import datetime
 import re
 
 meetups = Blueprint("meetups", __name__, url_prefix = "/api/v1")
 model = MeetUpModel()
+validator = ValidationModule()
 
 """
 Adds validators to the requests that the user is passing
@@ -15,20 +17,7 @@ stating that its missing a required field
 
 """
 
-def Validator(details, date):
-    for value in details:
-        if type(value) != str:
-            return False
-        
-    
-    for input_ in details:
-        if len(input_) == 0:
-            return False
-    try:
-        datetime.datetime.strptime(date, '%Y-%m-%d %H:%M')
-    except ValueError:
-        return False
-    
+
     
 @meetups.route("/meetups", methods=["POST"])
 def create_meetup():
@@ -49,8 +38,19 @@ def create_meetup():
     details = name, location, topic, tag, image, happeningOn
     date = happeningOn
 
-    if Validator(details, date) == False:
-        return jsonify({"error": "checkout your input details "}),400
+    if validator.check_if_string(details) == False:
+        return jsonify({"data" : "400", "error": "input details need to be strings "}),400
+
+    if validator.check_date_if_matches(date) == False:
+        return jsonify({"data" : "400","error": "date needs to be in the format Y-m-d H:M "}),400
+    
+    if validator.check_if_data_is_whitespace(details) == False:
+         return jsonify({"data" : "400", "error": "input should not be whitespaces"}),400
+
+    if validator.check_if_data_not_in_(details) == False:
+        return jsonify({"data" : "400", "error": "input should not be empty"}),400
+
+
     response = model.save(topic, happeningOn, name, location, tag, image)
     return jsonify(response), 201
 
