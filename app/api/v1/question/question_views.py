@@ -7,14 +7,7 @@ question_blueprint=Blueprint("question_blueprint", __name__, url_prefix= "/api/v
 question = QuestionModel()
 validator = ValidationModule()
 
-def Validator(details):
-    for value in details:
-        if type(value) != str:
-            return False
-    
-    for input_ in details:
-        if len(input_) == 0:
-            return False
+
     
 
 @question_blueprint.route("/questions", methods=["POST"])
