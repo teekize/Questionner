@@ -11,7 +11,17 @@ class TestQuestionsEndpoint(unittest.TestCase):
         self.client = self.app.test_client()
         self.meetup = {
           
-            "name":"teeka",
+            "name":"jeeka",
+            "location":"nairobi", 
+            "image" : "pintrest.png",
+            "topic" : "what is Andela",
+            "tag" : "dev",
+            "happeningOn" : "2019-01-10 10:30"
+            
+        }
+        self.meetup_1 = {
+          
+            "name":"meeka",
             "location":"nairobi", 
             "image" : "pintrest.png",
             "topic" : "what is Andela",
@@ -72,20 +82,23 @@ class TestQuestionsEndpoint(unittest.TestCase):
         response = self.client.post("/api/v1/meetups", 
                                                         data = json.dumps(self.meetup_invalid_date), 
                                                         content_type="application/json")                                             
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
 
     def test_not_string(self):
         '''test where one of the fields that should be a string  is given in form of an integer'''
         response = self.client.post("/api/v1/meetups", 
                                                         data = json.dumps(self.meetup_not_string), 
                                                         content_type="application/json")                                             
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
 
 
 
     def test_get_one_meetup(self):
         '''tests  getting a specific meetup requires GET method'''
-        response = self.post_meetup()
+        response = self.client.post("/api/v1/meetups", 
+                                                        data = json.dumps(self.meetup_1), 
+                                                        content_type="application/json")
+
         results = json.loads(response.data.decode())
         resluts_id = results["data"][0]["id"]
         self.assertEqual(response.status_code, 201)
@@ -105,6 +118,7 @@ class TestQuestionsEndpoint(unittest.TestCase):
             self.assertEqual(response_1.status_code, 200)
 
     def tearDown(self):
+        """tears down the data"""
         self.app = None
 
          
