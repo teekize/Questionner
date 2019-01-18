@@ -50,7 +50,7 @@ def create_meetup():
     date = happeningOn
 
     if Validator(details, date) == False:
-        return jsonify({"error": "check your meetup details "}),404
+        return jsonify({"error": "checkout your input details "}),400
     response = model.save(topic, happeningOn, name, location, tag, image)
     return jsonify(response), 201
 
