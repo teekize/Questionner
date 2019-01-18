@@ -49,8 +49,8 @@ class QuestionModel(MeetUpModel):
                 result[0]["vote"] = result[0]["vote"] +1
 
             if _num == 1 and result[0]["vote"] <= 0:
-                result[0]["vote"] == 0
-            elif _num == 1 and result[0]["vote"] <= 1:
+                result[0]["vote"] = 0
+            elif _num == 1 and result[0]["vote"] >= 1:
                 result[0]["vote"] = result[0]["vote"]-1
             return {
                     "status" :200,
