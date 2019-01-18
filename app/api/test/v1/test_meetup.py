@@ -118,6 +118,7 @@ class TestQuestionsEndpoint(unittest.TestCase):
             self.assertEqual(response_1.status_code, 200)
 
     def tearDown(self):
+        """tears down the data"""
         self.app = None
 
          
