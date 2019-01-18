@@ -72,14 +72,14 @@ class TestQuestionsEndpoint(unittest.TestCase):
         response = self.client.post("/api/v1/meetups", 
                                                         data = json.dumps(self.meetup_invalid_date), 
                                                         content_type="application/json")                                             
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
 
     def test_not_string(self):
         '''test where one of the fields that should be a string  is given in form of an integer'''
         response = self.client.post("/api/v1/meetups", 
                                                         data = json.dumps(self.meetup_not_string), 
                                                         content_type="application/json")                                             
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
 
 
 
