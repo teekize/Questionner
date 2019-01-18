@@ -17,7 +17,10 @@ class MeetUpModel:
         return None
 
     def save(self, topic, happeningOn, name, location, tag, image):
-
+        _meetups_with_same_name = [meetup for meetup in self.db if meetup["name"] == name]
+        if  len(_meetups_with_same_name) > 0:
+            return {"error" : " that meetup already exists"}
+            
         new_meetup = {
             "id" : len(self.db) +1, 
             "createdOn" : self.day_,
@@ -25,7 +28,8 @@ class MeetUpModel:
             "topic": topic,
             "happeningOn": happeningOn,
             "tag": tag,
-            "image" : image
+            "image" : image,
+            "name" : name
         }
         meetupdb.append(new_meetup)
         return {"status_code": 201, 
