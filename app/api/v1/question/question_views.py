@@ -1,9 +1,11 @@
 from flask import Blueprint, jsonify, request
 from app.api.v1.question.question_model import QuestionModel
+from app.api.v1.validation import ValidationModule
 import datetime
 
 question_blueprint=Blueprint("question_blueprint", __name__, url_prefix= "/api/v1")
 question = QuestionModel()
+validator = ValidationModule()
 
 def Validator(details):
     for value in details:
@@ -34,9 +36,13 @@ def post_question():
 
     details = body, createdBy, title
 
-    if Validator(details) == False:
+    if validator.check_if_string(details) == False:
         return jsonify({"status": 400,
-                        "error" : "invalid data"
+                        "error" : "input details need to be in the form of strings"
+                        }), 400
+    if validator.check_if_data_not_in_(details) == False:
+        return jsonify({"status": 400,
+                        "error" : "input details cannot be empty"
                         }), 400
 
     results = question.save(createdBy, meetup,title, body)
