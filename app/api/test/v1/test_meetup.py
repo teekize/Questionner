@@ -11,7 +11,17 @@ class TestQuestionsEndpoint(unittest.TestCase):
         self.client = self.app.test_client()
         self.meetup = {
           
-            "name":"teeka",
+            "name":"jeeka",
+            "location":"nairobi", 
+            "image" : "pintrest.png",
+            "topic" : "what is Andela",
+            "tag" : "dev",
+            "happeningOn" : "2019-01-10 10:30"
+            
+        }
+        self.meetup_1 = {
+          
+            "name":"meeka",
             "location":"nairobi", 
             "image" : "pintrest.png",
             "topic" : "what is Andela",
@@ -85,7 +95,10 @@ class TestQuestionsEndpoint(unittest.TestCase):
 
     def test_get_one_meetup(self):
         '''tests  getting a specific meetup requires GET method'''
-        response = self.post_meetup()
+        response = self.client.post("/api/v1/meetups", 
+                                                        data = json.dumps(self.meetup_1), 
+                                                        content_type="application/json")
+
         results = json.loads(response.data.decode())
         resluts_id = results["data"][0]["id"]
         self.assertEqual(response.status_code, 201)
