@@ -1,10 +1,12 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, make_response, abort
 from app.api.v1.rsvp.rsvp_models import meetupdb, RsvpModel
 from app.api.v1.meetups import models 
 import datetime
 
 instance_rsvp = RsvpModel()
 rsvp_blueprint=Blueprint("rsvp_blueprint", __name__, url_prefix= "/api/v1")
+
+
 
 @rsvp_blueprint.route("/meetups/<int:meetup_id>/rsvp", methods=["POST"])
 def post_rsvp(meetup_id):
@@ -13,10 +15,11 @@ def post_rsvp(meetup_id):
 
     for field in required_fields:
         if field not in incoming_request or not incoming_request:
+            
             return jsonify({
-                            "status":403,
-                            "message":"Required fields missing"
-                }), 403
+                            "status":400,
+                            "message":"Required field ({}) missing".format(field)
+                }), 400
     response_from_user =request.json["response"]
     user_to_rsvp = request.json["user"]
     meetup_id_to_rsvp = meetup_id
