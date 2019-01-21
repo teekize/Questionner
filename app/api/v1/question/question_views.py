@@ -33,7 +33,7 @@ def post_question():
         return jsonify({"status": 400,
                         "error" : "the inputs (body, title and createdBy) need to be in the form of strings"
                         }), 400
-    if validator.check_if_data_not_in_(details) == False:
+    if validator.check_not_empty(details) == False:
         return jsonify({"status": 400,
                         "error" : "the inputs (body, title and createdBy) cannot be empty"
                         }), 400
@@ -45,7 +45,7 @@ def post_question():
 def upvote_question(question_id):
     num = 0
     results = question.upvote_downvote_question(question_id, num)
-    if 404 in results:
+    if results.get("status")== 404:
         return jsonify(results),404
     return jsonify (results), 201
 
@@ -54,6 +54,6 @@ def upvote_question(question_id):
 def downvote_question(question_id):
     num = 1
     results = question.upvote_downvote_question(question_id, num)
-    if 404 in results:
+    if results.get("status"):
         return jsonify(results),404
     return jsonify (results), 201
