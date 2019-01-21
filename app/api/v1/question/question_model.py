@@ -42,7 +42,7 @@ class QuestionModel(MeetUpModel):
         if not result:
             return {
                     "status" : 404,
-                    "error" : "question with the id not found"
+                    "error" : "question with the id ({}) not found".format(question_id)
                    }
         else:
             if _num == 0:
