@@ -15,7 +15,7 @@ class TestQuestionsEndpoint(unittest.TestCase):
             "location":"nairobi", 
             "image" : "pintrest.png",
             "topic" : "what is Andela",
-            "tag" : "dev",
+            "tag" : "deva",
             "happeningOn" : "2019-01-10 10:30"
             
         }
@@ -25,8 +25,18 @@ class TestQuestionsEndpoint(unittest.TestCase):
             "location":"nairobi", 
             "image" : "pintrest.png",
             "topic" : "what is Andela",
-            "tag" : "dev",
+            "tag" : "dev4e",
             "happeningOn" : "2019-01-10 10:30"
+            
+        }
+        self.meetup_2 = {
+          
+            "name":"mekikaka",
+            "location":"nairobi", 
+            "image" : "pintrest.png",
+            "topic" : "what is Andela",
+            "tag" : "devfe",
+            "happeningOn" : "2019-01-30 10:30"
             
         }
         self.meetup_invalid_date = {
@@ -111,7 +121,8 @@ class TestQuestionsEndpoint(unittest.TestCase):
 
     def test_get_all_meetup(self):
             '''tests the for gettting all upcoming  meetups'''
-            response = self.post_meetup()
+            response = self.client.post("/api/v1/meetups", data = json.dumps(self.meetup_2),
+                                                    content_type = "application/json")
             self.assertEqual(response.status_code, 201)
            
             response_1 = self.client.get("/api/v1/meetups/upcoming")
