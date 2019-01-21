@@ -18,9 +18,9 @@ def post_question():
     for field in required_fields:
         if field not in incoming_request or not incoming_request:
             return jsonify({
-                            "status":403,
-                            "message":"Required fields missing"
-                }), 403
+                            "status":400,
+                            "message":"Required field ({}) missing".format(field)
+                }), 400
 
     body = request.json["body"]
     createdBy = request.json["createdBy"]
