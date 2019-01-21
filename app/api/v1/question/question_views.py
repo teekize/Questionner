@@ -54,6 +54,6 @@ def upvote_question(question_id):
 def downvote_question(question_id):
     num = 1
     results = question.upvote_downvote_question(question_id, num)
-    if results.get("status"):
+    if results.get("status")==404:
         return jsonify(results),404
     return jsonify (results), 201
