@@ -31,11 +31,11 @@ def post_question():
 
     if validator.check_if_string(details) == False:
         return jsonify({"status": 400,
-                        "error" : "input details need to be in the form of strings"
+                        "error" : "the inputs (body, title and createdBy) need to be in the form of strings"
                         }), 400
     if validator.check_if_data_not_in_(details) == False:
         return jsonify({"status": 400,
-                        "error" : "input details cannot be empty"
+                        "error" : "the inputs (body, title and createdBy) cannot be empty"
                         }), 400
 
     results = question.save(createdBy, meetup,title, body)
