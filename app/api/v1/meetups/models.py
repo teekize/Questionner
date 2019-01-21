@@ -16,23 +16,27 @@ class MeetUpModel:
             return data_in_db
         return None
 
-    def save(self, topic, happeningOn, name, location, tag, image):
-        _meetups_with_same_name = [meetup for meetup in self.db if meetup["name"] == name]
+    def save(self,detail):
+        _meetups_with_same_name = [meetup for meetup in self.db if meetup["name"] == detail.get("name")]
         if  len(_meetups_with_same_name) > 0:
-            return {"error" : " that meetup already exists"}
+            return {
+                    "status" : 409,
+                    "error" : " the meetup with the name ({}) already exists".format(detail.get("name"))
+                    }
             
         new_meetup = {
             "id" : len(self.db) +1, 
             "createdOn" : self.day_,
-            "location": location,
-            "topic": topic,
-            "happeningOn": happeningOn,
-            "tag": tag,
-            "image" : image,
-            "name" : name
+            "location": detail.get("location"),
+            "topic": detail.get("topic"),
+            "happeningOn": detail.get("happeningOn"),
+            "tag": detail.get("tag"),
+            "image" : detail.get("image"),
+            "name" : detail.get("name")
         }
         meetupdb.append(new_meetup)
-        return {"status_code": 201, 
+        return {
+            "status_code": 201, 
                         "data" : [
                                     {
                                         "id" : new_meetup["id"], 
@@ -49,15 +53,22 @@ class MeetUpModel:
         results = [meetup for meetup in self.db if 
         meetup["happeningOn"] > datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M')]
         if not results:
-            return {"error" : "no  upcoming meetups", "satus" : 404}
-        return {"data" : results}
+            return {
+                    "error" : "no  upcoming meetups",
+                    "status" : 404
+                    }
+        return {
+                "status" : 200,
+                "data" : results
+                }
 
     
     def get_one(self, _id):
         results = self.check_in_db( _id)
         if not results :
             return {"status" : 404, 
-                    "error" : "Meetup not found"}
+                    "error" : "Meetup with id ({}) not found".format(_id)
+                    }
 
         return {"status": 200,
                 "data": [
