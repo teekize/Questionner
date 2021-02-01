@@ -18,9 +18,9 @@ def post_question():
     for field in required_fields:
         if field not in incoming_request or not incoming_request:
             return jsonify({
-                            "status":403,
-                            "message":"Required fields missing"
-                }), 403
+                            "status":400,
+                            "message":"Required field ({}) missing".format(field)
+                }), 400
 
     body = request.json["body"]
     createdBy = request.json["createdBy"]
@@ -31,11 +31,11 @@ def post_question():
 
     if validator.check_if_string(details) == False:
         return jsonify({"status": 400,
-                        "error" : "input details need to be in the form of strings"
+                        "error" : "the inputs (body, title and createdBy) need to be in the form of strings"
                         }), 400
-    if validator.check_if_data_not_in_(details) == False:
+    if validator.check_not_empty(details) == False:
         return jsonify({"status": 400,
-                        "error" : "input details cannot be empty"
+                        "error" : "the inputs (body, title and createdBy) cannot be empty"
                         }), 400
 
     results = question.save(createdBy, meetup,title, body)
@@ -45,7 +45,7 @@ def post_question():
 def upvote_question(question_id):
     num = 0
     results = question.upvote_downvote_question(question_id, num)
-    if 404 in results:
+    if results.get("status")== 404:
         return jsonify(results),404
     return jsonify (results), 201
 
@@ -54,6 +54,6 @@ def upvote_question(question_id):
 def downvote_question(question_id):
     num = 1
     results = question.upvote_downvote_question(question_id, num)
-    if 404 in results:
+    if results.get("status")==404:
         return jsonify(results),404
     return jsonify (results), 201

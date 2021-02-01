@@ -19,7 +19,7 @@ class TestsForRsvp(unittest.TestCase):
             "location":"nairobi", 
             "image" : "pintrest.png",
             "topic" : "what is Andela",
-            "tag" : "dev",
+            "tag" : "dev33rr",
             "happeningOn" : "2019-01-10 10:30"
             
         }

@@ -26,7 +26,7 @@ def create_meetup():
 
     for field in required:  
         if field not in payload :
-            return jsonify({"error" : "Bad request"}), 400
+            return jsonify({"error" : "The required field ({}) is missing".format(field)}), 400
 
     name = request.json.get("name")
     location = request.json.get("location")
@@ -35,37 +35,59 @@ def create_meetup():
     image = request.json.get("image",)
     happeningOn=request.json.get("happeningOn")
 
-    details = name, location, topic, tag, image, happeningOn
-    date = happeningOn
+    details = {
+                "name" : name, 
+                "location" : location, 
+                "topic" : topic, 
+                "tag" : tag, 
+                "image" : image, 
+                "happeningOn" : happeningOn
+              }
+   
 
     if validator.check_if_string(details) == False:
-        return jsonify({"data" : "400", "error": "input details need to be strings "}),400
+        return jsonify(
+                        {
+                        "status" : 400, 
+                        "error": "input fields (name, location, topic, tag, image, happeningOn) need to be strings "
+                        }
+                        ),400
 
-    if validator.check_date_if_matches(date) == False:
-        return jsonify({"data" : "400","error": "date needs to be in the format Y-m-d H:M "}),400
+    if validator.check_date_if_matches(details) == False:
+        return jsonify(
+                        {
+                        "status" : 400,
+                        "error": "the date needs to be in the format Y-m-d H:M "
+                        }
+                        ),400
     
-    if validator.check_if_data_is_whitespace(details) == False:
-         return jsonify({"data" : "400", "error": "input should not be whitespaces"}),400
 
     if validator.check_if_data_not_in_(details) == False:
-        return jsonify({"data" : "400", "error": "input should not be empty"}),400
+        return jsonify(
+                        {
+                        "status" : 400,
+                        "error": "The inputs (name, happeningOn, location, topic , image and tag) should not be empty"
+                        }
+                      ),400
 
 
-    response = model.save(topic, happeningOn, name, location, tag, image)
-    return jsonify(response), 201
+    response = model.save(details)
+    if response.get("status")== 409:
+        return jsonify(response),409
+    return jsonify(response),201
 
 @meetups.route("/meetups/<int:meetup_id>", methods=["GET"])
 def get_one_meetup(meetup_id):
     result = model.get_one(meetup_id)
-    if 404 in result:
-        return jsonify(result), 404
-    return jsonify(result), 200
+    if  result.get("status") == 200:
+        return jsonify(result), 200
+    return jsonify(result),404
     
 
 @meetups.route("/meetups/upcoming", methods=["GET"])
 def get_all_meetup():
     results = model.get_all_upcoming()
-    if 404 in results:
-        return jsonify(results), 404 
-    return jsonify(results), 200
+    if  results.get("status") == 404:
+        return jsonify(results),404 
+    return jsonify(results),200
     
